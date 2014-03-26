@@ -26,7 +26,7 @@ AND_SDK_DIR=/usr/local/android-sdks
 MY_SDK_DIR=/tmp/android-sdks
 
 # API level
-API_LEVEL=8
+API_LEVEL=9
 
 # To be configured to the place where you downloaded the SDK
 MY_API_DIR=$HOME/tmp/android-$API_LEVEL
@@ -52,7 +52,7 @@ mklink() {
 if [[ ! -d "$MY_API_DIR" ]]; then
     DIRNAME=`dirname $MY_API_DIR`
     mymkdir $DIRNAME
-    ./getplatform.sh 8 $DIRNAME
+    ./getplatform.sh 9 $DIRNAME
 fi
 
 mymkdir "$MY_SDK_DIR"
