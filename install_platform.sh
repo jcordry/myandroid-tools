@@ -43,7 +43,7 @@ fi
 mymkdir() {
     DIR="$1"
     if [[ ! -d "$DIR" ]]; then
-        mkdir "$DIR"
+        mkdir -p "$DIR"
     fi
 }
 
