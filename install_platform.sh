@@ -35,7 +35,7 @@ MY_API8_DIR=$HOME/tmp/android-8
 # You will have to use your password
 if [[ ! -d "$MY_API8_DIR" ]]; then
     cd `dirname $MY_API8_DIR`
-    ./getplatform 8
+    ./getplatform.sh 8
     cd $CUR_DIR
 fi
 
