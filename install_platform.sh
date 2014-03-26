@@ -3,7 +3,7 @@
 #
 #          FILE: install_platform.sh
 #
-#         USAGE: ./install_platform.sh <api-level>
+#         USAGE: ./install_platform.sh [api-level]
 #                Where api-level is a number between 1 and 19
 #
 #   DESCRIPTION: This script sets up a new working directory for the
@@ -25,11 +25,17 @@ AND_SDK_DIR=/usr/local/android-sdks
 # Where our copy of the SDK is going to sit
 MY_SDK_DIR=/tmp/android-sdks
 
-# API level
-API_LEVEL=9
+# API level. The default level is 8.
+API_LEVEL=8
 
 # To be configured to the place where you downloaded the SDK
 MY_API_DIR=$HOME/tmp/android-$API_LEVEL
+
+# We can call this script with an argument to get another api level than 8. The
+# argument has to be a number from 1 to 19.
+if [[ $# -eq 1 ]]; then
+    API_LEVEL=$1
+fi
 
 # Creates a directory if it does not exist already and gets into it.
 mymkdir() {
