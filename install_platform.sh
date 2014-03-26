@@ -19,10 +19,6 @@
 #      REVISION:  ---
 #===============================================================================
 
-# In case we can't do pushd/popd, we could mark the current dir to get back to
-# it later.
-CUR_DIR=$PWD
-
 # Where the Android SDK is located. It should work on OSX as well a Linux.
 AND_SDK_DIR=/usr/local/android-sdks
 
@@ -53,7 +49,7 @@ mklink() {
 if [[ ! -d "$MY_API8_DIR" ]]; then
     DIRNAME=`dirname $MY_API8_DIR`
     mymkdir $DIRNAME
-    $CUR_DIR/getplatform.sh 8 $DIRNAME
+    ./getplatform.sh 8 $DIRNAME
 fi
 
 mymkdir "$MY_SDK_DIR"
