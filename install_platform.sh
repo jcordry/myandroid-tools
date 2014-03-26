@@ -52,7 +52,7 @@ mklink() {
 if [[ ! -d "$MY_API_DIR" ]]; then
     DIRNAME=`dirname $MY_API_DIR`
     mymkdir $DIRNAME
-    ./getplatform.sh 9 $DIRNAME
+    ./getplatform.sh $API_LEVEL $DIRNAME
 fi
 
 mymkdir "$MY_SDK_DIR"
