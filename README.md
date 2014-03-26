@@ -14,4 +14,4 @@ Some of those scripts can apply to the Mac labs:
 Some other apply to the Linux labs:
 
     getplatform.sh: used to obtain an api level from Google.
-    install_platform.sh: this uses the previous to install api level 8.
+    install_platform.sh n: this uses the previous to install api level n.
