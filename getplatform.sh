@@ -51,14 +51,24 @@ fi
 if [[ $1 -le 6 ]]; then
     FILE=`grep 'sdk:url>android' $REPXML | sed -e 's/\(.*\)\(and\)/\2/' -e\
         's/<.*//' | grep -e $VERSION | grep linux`
+    SHA=`grep -B 1 -e android$VERSION $REPXML | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
+    echo "$SHA  $FILE"
 else
     FILE=`grep 'sdk:url>android' $REPXML | sed -e 's/\(.*\)\(and\)/\2/' -e\
         's/<.*//' | grep -e $VERSION`
+    SHA=`grep -B 1 -e android$VERSION $REPXML | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
+    echo "$SHA  $FILE"
 fi
 
 if [[ ! -f $FILE ]]; then
     wget $ROOTURL/$FILE
+    echo "$SHA  $FILE" | sha1sum -c > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "Checksum failed! Aborting..."
+        exit 1
+    fi
 fi
+
 
 FOLDER=${FILE%.zip}
 
