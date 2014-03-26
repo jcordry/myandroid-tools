@@ -52,11 +52,8 @@ if [[ $1 -le 6 ]]; then
     FILE=`grep 'sdk:url>android' $REPXML | sed -e 's/\(.*\)\(and\)/\2/' -e\
         's/<.*//' | grep -e $VERSION | grep linux`
 else
-    echo IN HERE
     FILE=`grep 'sdk:url>android' $REPXML | sed -e 's/\(.*\)\(and\)/\2/' -e\
         's/<.*//' | grep -e $VERSION`
-    echo $FILE
-    echo IN HERE
 fi
 
 if [[ ! -f $FILE ]]; then
