@@ -30,6 +30,7 @@ MY_API8_DIR=$HOME/tmp/android-8
 
 # You will have to use your password
 if [[ ! -d "$MY_API8_DIR" ]]; then
+    cd `dirname $MY_API8_DIR`
     ./getplatform 8
     # scp -r apple33.scm.tees.ac.uk:$AND_SDK_DIR/platforms/android-8 $MY_API8_DIR
 fi
