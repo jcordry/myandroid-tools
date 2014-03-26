@@ -32,13 +32,6 @@ MY_SDK_DIR=/tmp/android-sdks
 # To be configured to the place where you downloaded the SDK
 MY_API8_DIR=$HOME/tmp/android-8
 
-# You will have to use your password
-if [[ ! -d "$MY_API8_DIR" ]]; then
-    cd `dirname $MY_API8_DIR`
-    $CUR_DIR/getplatform.sh 8
-    cd $CUR_DIR
-fi
-
 # Creates a directory if it does not exist already and gets into it.
 mymkdir() {
     DIR="$1"
@@ -56,6 +49,12 @@ mklink() {
         ln -s "$SRC" "$DEST/$BASE"
     fi
 }
+
+if [[ ! -d "$MY_API8_DIR" ]]; then
+    DIRNAME=`dirname $MY_API8_DIR`
+    mymkdir $DIRNAME
+    $CUR_DIR/getplatform.sh 8 $DIRNAME
+fi
 
 mymkdir "$MY_SDK_DIR"
 
