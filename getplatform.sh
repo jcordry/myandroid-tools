@@ -55,7 +55,7 @@ case $1 in
     *) VERSION=-$VERSION
 esac
 
-if [[ ! -f $ROOTURL/$REPXML ]]; then
+if [[ ! -f $DEST_FOLDER/$REPXML ]]; then
     wget $ROOTURL/$REPXML -P $DEST_FOLDER
 fi
 
