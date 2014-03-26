@@ -25,8 +25,11 @@ AND_SDK_DIR=/usr/local/android-sdks
 # Where our copy of the SDK is going to sit
 MY_SDK_DIR=/tmp/android-sdks
 
+# API level
+API_LEVEL=8
+
 # To be configured to the place where you downloaded the SDK
-MY_API8_DIR=$HOME/tmp/android-8
+MY_API_DIR=$HOME/tmp/android-$API_LEVEL
 
 # Creates a directory if it does not exist already and gets into it.
 mymkdir() {
@@ -46,8 +49,8 @@ mklink() {
     fi
 }
 
-if [[ ! -d "$MY_API8_DIR" ]]; then
-    DIRNAME=`dirname $MY_API8_DIR`
+if [[ ! -d "$MY_API_DIR" ]]; then
+    DIRNAME=`dirname $MY_API_DIR`
     mymkdir $DIRNAME
     ./getplatform.sh 8 $DIRNAME
 fi
@@ -69,5 +72,5 @@ for file in "$AND_SDK_DIR"/platforms/*; do
     mklink "$file" "$MY_SDK_DIR/platforms"
 done
 
-mklink "$MY_API8_DIR" "$MY_SDK_DIR/platforms"
+mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
