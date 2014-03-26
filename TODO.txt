@@ -1,0 +1,2 @@
+- Automate install in Linux labs with fetching the platform and installing it.
+- Allow for more than platforms to be installed.
