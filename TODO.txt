@@ -1,2 +1,2 @@
-- Allow for more than platforms to be installed.
-- Edit the eclipse configuration file to point to the folder.
+- Allow for something other than platforms to be installed.
+- Test the eclipse configuration file to point to the folder.
