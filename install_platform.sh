@@ -2,19 +2,19 @@
 #===============================================================================
 #
 #          FILE: install_platform.sh
-# 
+#
 #         USAGE: ./install_platform.sh <api-level>
 #                Where api-level is a number between 1 and 19
-# 
+#
 #   DESCRIPTION: This script sets up a new working directory for the
 #   Android/Eclipse plugin in the Linux labs
-# 
+#
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
 #        AUTHOR: Julien Cordry
-#  ORGANIZATION: 
+#  ORGANIZATION:
 #       CREATED: 26/03/2014 08:17
 #      REVISION:  ---
 #===============================================================================
@@ -35,7 +35,7 @@ MY_API8_DIR=$HOME/tmp/android-8
 # You will have to use your password
 if [[ ! -d "$MY_API8_DIR" ]]; then
     cd `dirname $MY_API8_DIR`
-    ./getplatform.sh 8
+    $CUR_DIR/getplatform.sh 8
     cd $CUR_DIR
 fi
 
@@ -45,7 +45,6 @@ mymkdir() {
     if [[ ! -d "$DIR" ]]; then
         mkdir "$DIR"
     fi
-    # cd "$DIR"
 }
 
 # Creates a symbolic link to the target if it does not exist already.
@@ -53,7 +52,7 @@ mklink() {
     SRC="$1"
     DEST="$2"
     BASE=`basename "$SRC"`
-    if [[ ! -h "$BASE" ]]; then
+    if [[ ! -h "$DEST/$BASE" ]]; then
         ln -s "$SRC" "$DEST/$BASE"
     fi
 }
@@ -71,7 +70,9 @@ done
 mymkdir "$MY_SDK_DIR/platforms"
 
 # Link everything from the platforms directory.
-ln -s "$AND_SDK_DIR/platforms/*" "$MY_SDK_DIR/platforms/"
+for file in "$AND_SDK_DIR"/platforms/*; do
+    mklink "$file" "$MY_SDK_DIR/platforms"
+done
 
 mklink "$MY_API8_DIR" "$MY_SDK_DIR/platforms"
 
