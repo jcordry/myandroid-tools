@@ -28,7 +28,7 @@ MY_SDK_DIR=/tmp/android-sdks
 # API level. The default level is 8.
 API_LEVEL=8
 
-# To be configured to the place where you downloaded the SDK
+# The place where the platform is to be downloaded (perferably in homespace).
 MY_API_DIR=$HOME/tmp/android-$API_LEVEL
 
 # We can call this script with an argument to get another api level than 8. The
