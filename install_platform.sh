@@ -19,7 +19,8 @@
 #      REVISION:  ---
 #===============================================================================
 
-# Where the Android SDK is located. It should work on OSX as well a Linux.
+# Where the installed Android SDK is located. It should work on OSX as well a
+# Linux.
 AND_SDK_DIR=/usr/local/android-sdks
 
 # Where our copy of the SDK is going to sit
@@ -99,7 +100,11 @@ mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
 # Edit ~/.android/ddms.cfg
 if [[ -d ~/.android && -f ~/.android/ddms.cfg ]]; then
-    sed -e "s:.*lastSdkPath.*:lastSdkPath=/tmp/android-sdks/:" \
+    sed -e "s:.*lastSdkPath.*:lastSdkPath=$MY_SDK_DIR:" \
         < ~/.android/ddms.cfg > ~/.android/ddms.cfg.2
     mv -f ~/.android/ddms.cfg.2 ~/.android/ddms.cfg
+else
+    echo "Your Android configuration directory can not be found."
+    echo "When you start Eclipse, please edit the location of the sdk to:"
+    echo "$MY_SDK_DIR."
 fi
