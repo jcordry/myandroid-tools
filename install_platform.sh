@@ -37,7 +37,12 @@ if [[ $# -eq 1 ]]; then
     API_LEVEL=$1
 fi
 
-# Creates a directory if it does not exist already and gets into it.
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  mymkdir
+#   DESCRIPTION:  Recursively creates a directory if it does not exist already.
+#    PARAMETERS:  The directory to be created.
+#       RETURNS:  
+#-------------------------------------------------------------------------------
 mymkdir() {
     DIR="$1"
     if [[ ! -d "$DIR" ]]; then
@@ -45,17 +50,25 @@ mymkdir() {
     fi
 }
 
-# Creates a symbolic link to the target if it does not exist already.
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  mklink
+#   DESCRIPTION:  Creates a symbolic link to the target if it does not exist
+#   already.
+#    PARAMETERS:  The source of the copy and the destination folder.
+#       RETURNS:  
+#-------------------------------------------------------------------------------
 mklink() {
     SRC="$1"
     DEST="$2"
     BASE=`basename "$SRC"`
-    DIFF=`diff "$DEST/$BASE" "$SRC" > /dev/null 2>&1`
     if [[ ! -h "$DEST/$BASE" ]]; then
         ln -s "$SRC" "$DEST/$BASE"
-    elif [[ $DIFF -ne 0 ]]; then
-        rm -f "$DEST/$BASE"
-        ln -s "$SRC" "$DEST/$BASE"
+    else 
+        DIFF=`diff "$DEST/$BASE" "$SRC" > /dev/null 2>&1`
+        if [[ $DIFF -ne 0 ]]; then
+            rm -f "$DEST/$BASE"
+            ln -s "$SRC" "$DEST/$BASE"
+        fi
     fi
 }
 
