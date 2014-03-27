@@ -55,22 +55,22 @@ case $1 in
     *) VERSION=-$VERSION
 esac
 
-if [[ ! -f $DEST_FOLDER/$REPXML ]]; then
-    wget $ROOTURL/$REPXML -P $DEST_FOLDER
+if [[ ! -f "$DEST_FOLDER/$REPXML" ]]; then
+    wget "$ROOTURL/$REPXML" -P $DEST_FOLDER
 fi
 
 if [[ $1 -le 6 ]]; then
     FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e $VERSION | grep linux`
-    SHA=`grep -B 1 -e android$VERSION "$DEST_FOLDER/$REPXML" | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
+        's/<.*//' | grep -e "$VERSION" | grep linux`
+    SHA=`grep -B 1 -e "android$VERSION" "$DEST_FOLDER/$REPXML" | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 else
     FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e $VERSION`
-    SHA=`grep -B 1 -e android$VERSION "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
+        's/<.*//' | grep -e "$VERSION"`
+    SHA=`grep -B 1 -e "android$VERSION" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 fi
 
 if [[ ! -f $FILE ]]; then
-    wget $ROOTURL/$FILE -P "$DEST_FOLDER"
+    wget -nv $ROOTURL/$FILE -P "$DEST_FOLDER"
     echo "$SHA  $DEST_FOLDER/$FILE" | sha1sum -c > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         echo "Checksum failed! Aborting..."
@@ -81,9 +81,9 @@ fi
 FOLDER=${FILE%.zip}
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
-    unzip -q $DEST_FOLDER/$FILE -d $DEST_FOLDER
+    unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER"
 fi
 
-if [[ ! -h $DEST_FOLDER/android-$1 ]]; then
-    ln -s $DEST_FOLDER/$FOLDER $DEST_FOLDER/android-$1
+if [[ ! -h "$DEST_FOLDER/android-$1" ]]; then
+    ln -s "$DEST_FOLDER/$FOLDER" "$DEST_FOLDER/android-$1"
 fi
