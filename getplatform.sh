@@ -100,8 +100,6 @@ fi
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
     echo "unzipping the file"
-    echo unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER"
-    echo unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER/$FOLDER"
     unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER"
 fi
 
