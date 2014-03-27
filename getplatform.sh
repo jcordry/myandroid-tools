@@ -83,9 +83,19 @@ if [[ $1 -le 13 ]]; then
 else
     case $1 in
         14)
-            V=;;
+            VERSION=4.0;;
+        15)
+            VERSION=4.0.3;;
+        16)
+            VERSION=4.1.2;;
+        17)
+            VERSION=4.2.2;;
+        18)
+            VERSION=4.3;;
+        19)
+            VERSION=4.4;;
     esac
-    FOLDER=android$LEVEL
+    FOLDER=android-$VERSION
 fi
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
