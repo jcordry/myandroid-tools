@@ -29,14 +29,14 @@ MY_SDK_DIR=/tmp/android-sdks
 # API level. The default level is 8.
 API_LEVEL=8
 
-# The place where the platform is to be downloaded (perferably in homespace).
-MY_API_DIR=$HOME/tmp/android-$API_LEVEL
-
 # We can call this script with an argument to get another api level than 8. The
 # argument has to be a number from 1 to 19.
 if [[ $# -eq 1 ]]; then
     API_LEVEL=$1
 fi
+
+# The place where the platform is to be downloaded (perferably in homespace).
+MY_API_DIR=$HOME/tmp/android-$API_LEVEL
 
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  mymkdir
@@ -96,6 +96,7 @@ for file in "$AND_SDK_DIR"/platforms/*; do
     mklink "$file" "$MY_SDK_DIR/platforms"
 done
 
+echo mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
 # Edit ~/.android/ddms.cfg
