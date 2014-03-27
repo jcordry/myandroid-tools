@@ -81,6 +81,8 @@ done
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
 # Edit ~/.android/ddms.cfg
-sed -e "s:.*lastSdkPath.*:lastSdkPath=/tmp/android-sdks/:" \
-    < ~/.android/ddms.cfg > ~/.android/ddms.cfg.2
-\mv ~/.android/ddms.cfg.2 ~/.android/ddms.cfg
+if [[ -d ~/.android && -f ~/.android/ddms.cfg ]]; then
+    sed -e "s:.*lastSdkPath.*:lastSdkPath=/tmp/android-sdks/:" \
+        < ~/.android/ddms.cfg > ~/.android/ddms.cfg.2
+    \mv ~/.android/ddms.cfg.2 ~/.android/ddms.cfg
+fi
