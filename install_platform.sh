@@ -96,6 +96,7 @@ for file in "$AND_SDK_DIR"/platforms/*; do
     mklink "$file" "$MY_SDK_DIR/platforms"
 done
 
+echo mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
 # Edit ~/.android/ddms.cfg
