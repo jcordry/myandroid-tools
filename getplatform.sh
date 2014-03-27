@@ -83,9 +83,9 @@ if [[ "$1" -le 13 ]]; then
 else
     case $1 in
         14)
-            VERSION=4.0;;
+            VERSION=4.0.2;;
         15)
-            VERSION=4.0.3;;
+            VERSION=4.0.4;;
         16)
             VERSION=4.1.2;;
         17)
