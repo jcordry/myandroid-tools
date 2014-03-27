@@ -78,10 +78,16 @@ if [[ ! -f $FILE ]]; then
     fi
 fi
 
-FOLDER=${FILE%.zip}
+if [[ $1 -le 13 ]]; then
+    FOLDER=${FILE%.zip}
+else
+    FOLDER=android$VERSION
+fi
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
     echo "unzipping the file"
+    echo unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER"
+    echo unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER/$FOLDER"
     unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER"
 fi
 
