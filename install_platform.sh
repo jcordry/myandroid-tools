@@ -50,7 +50,11 @@ mklink() {
     SRC="$1"
     DEST="$2"
     BASE=`basename "$SRC"`
+    DIFF=`diff "$DEST/$BASE" "$SRC" > /dev/null 2>&1`
     if [[ ! -h "$DEST/$BASE" ]]; then
+        ln -s "$SRC" "$DEST/$BASE"
+    elif [[ $DIFF -ne 0 ]]; then
+        rm -f "$DEST/$BASE"
         ln -s "$SRC" "$DEST/$BASE"
     fi
 }
@@ -84,5 +88,5 @@ mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 if [[ -d ~/.android && -f ~/.android/ddms.cfg ]]; then
     sed -e "s:.*lastSdkPath.*:lastSdkPath=/tmp/android-sdks/:" \
         < ~/.android/ddms.cfg > ~/.android/ddms.cfg.2
-    \mv ~/.android/ddms.cfg.2 ~/.android/ddms.cfg
+    mv -f ~/.android/ddms.cfg.2 ~/.android/ddms.cfg
 fi
