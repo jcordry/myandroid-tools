@@ -56,7 +56,7 @@ case $1 in
 esac
 
 if [[ ! -f "$DEST_FOLDER/$REPXML" ]]; then
-    wget -nv "$ROOTURL/$REPXML" -P "$DEST_FOLDER"
+    wget "$ROOTURL/$REPXML" -P "$DEST_FOLDER"
 fi
 
 if [[ $1 -le 6 ]]; then
@@ -70,7 +70,7 @@ else
 fi
 
 if [[ ! -f $FILE ]]; then
-    wget -nv "$ROOTURL/$FILE" -P "$DEST_FOLDER"
+    wget "$ROOTURL/$FILE" -P "$DEST_FOLDER"
     echo "$SHA  $DEST_FOLDER/$FILE" | sha1sum -c > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         echo "Checksum failed! Aborting..."
