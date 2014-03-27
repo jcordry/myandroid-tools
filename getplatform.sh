@@ -56,7 +56,7 @@ case $1 in
 esac
 
 if [[ ! -f "$DEST_FOLDER/$REPXML" ]]; then
-    wget "$ROOTURL/$REPXML" -P $DEST_FOLDER
+    wget -nv "$ROOTURL/$REPXML" -P $DEST_FOLDER
 fi
 
 if [[ $1 -le 6 ]]; then
@@ -81,6 +81,7 @@ fi
 FOLDER=${FILE%.zip}
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
+    echo "unzipping the file"
     unzip -q "$DEST_FOLDER/$FILE" -d "$DEST_FOLDER"
 fi
 
