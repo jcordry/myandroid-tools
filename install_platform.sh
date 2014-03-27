@@ -42,7 +42,7 @@ fi
 #          NAME:  mymkdir
 #   DESCRIPTION:  Recursively creates a directory if it does not exist already.
 #    PARAMETERS:  The directory to be created.
-#       RETURNS:  
+#       RETURNS:
 #-------------------------------------------------------------------------------
 mymkdir() {
     DIR="$1"
@@ -56,7 +56,7 @@ mymkdir() {
 #   DESCRIPTION:  Creates a symbolic link to the target if it does not exist
 #   already.
 #    PARAMETERS:  The source of the copy and the destination folder.
-#       RETURNS:  
+#       RETURNS:
 #-------------------------------------------------------------------------------
 mklink() {
     SRC="$1"
@@ -64,7 +64,7 @@ mklink() {
     BASE=`basename "$SRC"`
     if [[ ! -h "$DEST/$BASE" ]]; then
         ln -s "$SRC" "$DEST/$BASE"
-    else 
+    else
         DIFF=`diff "$DEST/$BASE" "$SRC" > /dev/null 2>&1`
         if [[ $DIFF -ne 0 ]]; then
             rm -f "$DEST/$BASE"
