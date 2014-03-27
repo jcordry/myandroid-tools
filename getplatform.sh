@@ -78,7 +78,7 @@ if [[ ! -f $FILE ]]; then
     fi
 fi
 
-if [[ $1 -le 13 ]]; then
+if [[ "$1" -le 13 ]]; then
     FOLDER=${FILE%.zip}
 else
     case $1 in
