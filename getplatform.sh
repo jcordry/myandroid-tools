@@ -21,38 +21,38 @@ if [[ $1 -gt 19 || $1 -lt 1 ]]; then
     exit 1
 fi
 
-VERSION=$1
+LEVEL=$1
 DEST_FOLDER=$2
 
 ROOTURL=http://dl-ssl.google.com/android/repository
 REPXML=repository-8.xml
 
 case $1 in
-    2) VERSION=-1.1
+    2) LEVEL=-1.1
         ;;
-    3) VERSION=-1.5
+    3) LEVEL=-1.5
         ;;
-    4) VERSION=-1.6
+    4) LEVEL=-1.6
         ;;
-    5) VERSION=-2.0
+    5) LEVEL=-2.0
         ;;
-    6) VERSION=-2.0.1
+    6) LEVEL=-2.0.1
         ;;
-    7) VERSION=-2.1
+    7) LEVEL=-2.1
         ;;
-    8) VERSION=-2.2
+    8) LEVEL=-2.2
         ;;
-    9) VERSION=-2.3.1
+    9) LEVEL=-2.3.1
         ;;
-    10) VERSION=-2.3.3
+    10) LEVEL=-2.3.3
         ;;
-    11) VERSION=-3.0
+    11) LEVEL=-3.0
         ;;
-    12) VERSION=-3.1
+    12) LEVEL=-3.1
         ;;
-    13) VERSION=-3.2
+    13) LEVEL=-3.2
         ;;
-    *) VERSION=-$VERSION
+    *) LEVEL=-$LEVEL
 esac
 
 if [[ ! -f "$DEST_FOLDER/$REPXML" ]]; then
@@ -61,12 +61,12 @@ fi
 
 if [[ $1 -le 6 ]]; then
     FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e "$VERSION" | grep linux`
-    SHA=`grep -B 1 -e "android$VERSION" "$DEST_FOLDER/$REPXML" | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
+        's/<.*//' | grep -e "$LEVEL" | grep linux`
+    SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 else
     FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e "$VERSION"`
-    SHA=`grep -B 1 -e "android$VERSION" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
+        's/<.*//' | grep -e "$LEVEL"`
+    SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 fi
 
 if [[ ! -f $FILE ]]; then
@@ -81,7 +81,11 @@ fi
 if [[ $1 -le 13 ]]; then
     FOLDER=${FILE%.zip}
 else
-    FOLDER=android$VERSION
+    case $1 in
+        14)
+            V=;;
+    esac
+    FOLDER=android$LEVEL
 fi
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
