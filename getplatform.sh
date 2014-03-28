@@ -38,7 +38,7 @@ case $1 in
         LEVEL=-1.6
         ;;
     5)
-        LEVEL=-2.0
+        LEVEL=-2.0_
         ;;
     6)
         LEVEL=-2.0.1
@@ -74,12 +74,12 @@ if [[ ! -f "$DEST_FOLDER/$REPXML" ]]; then
 fi
 
 if [[ $1 -le 6 ]]; then
-    FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e "$LEVEL" | grep linux | uniq`
+    FILE=`grep "sdk:url>android$LEVEL" "$DEST_FOLDER/$REPXML" | grep linux |\
+        sed -e 's/\(.*\)\(and\)/\2/' -e 's/<.*//'`
     SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 else
-    FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e "$LEVEL"`
+    FILE=`grep "sdk:url>android$LEVEL" "$DEST_FOLDER/$REPXML" |\
+        sed -e 's/\(.*\)\(and\)/\2/' -e 's/<.*//'`
     SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 fi
 
