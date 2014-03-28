@@ -8,7 +8,7 @@
 
 usage() {
     echo "Usage: $0 <api-level> <dest-folder>"
-    echo "Where the api-level is between 1 and 19."
+    echo "Where the api-level is between 2 and 19."
 }
 
 if [[ $# -ne 2 ]]; then
@@ -16,7 +16,7 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
-if [[ $1 -gt 19 || $1 -lt 1 ]]; then
+if [[ $1 -gt 19 || $1 -lt 2 ]]; then
     usage
     exit 1
 fi
@@ -82,11 +82,6 @@ else
         sed -e 's/\(.*\)\(and\)/\2/' -e 's/<.*//'`
     SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 fi
-
-echo $FILE
-echo $SHA
-echo $LEVEL
-
 
 if [[ ! -f $FILE ]]; then
     wget "$ROOTURL/$FILE" -P "$DEST_FOLDER"
