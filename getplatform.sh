@@ -83,7 +83,10 @@ else
     SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 fi
 
-echo $FILE $SHA
+echo $FILE
+echo $SHA
+echo $LEVEL
+
 
 if [[ ! -f $FILE ]]; then
     wget "$ROOTURL/$FILE" -P "$DEST_FOLDER"
