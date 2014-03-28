@@ -83,6 +83,8 @@ else
     SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 fi
 
+$echo $FILE $SHA
+
 if [[ ! -f $FILE ]]; then
     wget "$ROOTURL/$FILE" -P "$DEST_FOLDER"
     echo "$SHA  $DEST_FOLDER/$FILE" | sha1sum -c > /dev/null 2>&1
