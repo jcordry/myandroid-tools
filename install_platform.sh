@@ -4,7 +4,7 @@
 #          FILE: install_platform.sh
 #
 #         USAGE: ./install_platform.sh [api-level]
-#                Where api-level is a number between 1 and 19
+#                Where api-level is a number between 2 and 19
 #
 #   DESCRIPTION: This script sets up a new working directory for the
 #   Android/Eclipse plugin in the Linux labs
