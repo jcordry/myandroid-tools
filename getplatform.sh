@@ -75,7 +75,7 @@ fi
 
 if [[ $1 -le 6 ]]; then
     FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
-        's/<.*//' | grep -e "$LEVEL" | grep linux`
+        's/<.*//' | grep -e "$LEVEL" | grep linux | uniq`
     SHA=`grep -B 1 -e "android$LEVEL" "$DEST_FOLDER/$REPXML" | grep -B 1 linux | grep sha1 | sed -e 's/.*sha1">//' -e 's/<.*//'`
 else
     FILE=`grep 'sdk:url>android' "$DEST_FOLDER/$REPXML" | sed -e 's/\(.*\)\(and\)/\2/' -e\
