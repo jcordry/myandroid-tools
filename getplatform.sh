@@ -101,9 +101,6 @@ case $1 in
     2)
         FOLDER=android-1.1
         ;;
-    5)
-        FOLDER=android-$VERSION
-        ;;
     14)
         FOLDER=android-4.0.2
         ;;
