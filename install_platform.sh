@@ -29,6 +29,16 @@ MY_SDK_DIR=/tmp/android-sdks
 # API level. The default level is 8.
 API_LEVEL=8
 
+usage() {
+    echo "Usage: $0 [api-level]"
+    echo "Where the api-level is between 2 and 19."
+}
+
+if [[ $1 -gt 19 || $1 -lt 2 ]]; then
+    usage
+    exit 1
+fi
+
 # We can call this script with an argument to get another api level than 8. The
 # argument has to be a number from 1 to 19.
 if [[ $# -eq 1 ]]; then
