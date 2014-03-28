@@ -28,31 +28,45 @@ ROOTURL=http://dl-ssl.google.com/android/repository
 REPXML=repository-8.xml
 
 case $1 in
-    2) LEVEL=-1.1
+    2)
+        LEVEL=-1.1
         ;;
-    3) LEVEL=-1.5
+    3)
+        LEVEL=-1.5
         ;;
-    4) LEVEL=-1.6
+    4)
+        LEVEL=-1.6
         ;;
-    5) LEVEL=-2.0
+    5)
+        LEVEL=-2.0
         ;;
-    6) LEVEL=-2.0.1
+    6)
+        LEVEL=-2.0.1
         ;;
-    7) LEVEL=-2.1
+    7)
+        LEVEL=-2.1
         ;;
-    8) LEVEL=-2.2
+    8)
+        LEVEL=-2.2
         ;;
-    9) LEVEL=-2.3.1
+    9)
+        LEVEL=-2.3.1
         ;;
-    10) LEVEL=-2.3.3
+    10)
+        LEVEL=-2.3.3
         ;;
-    11) LEVEL=-3.0
+    11)
+        LEVEL=-3.0
         ;;
-    12) LEVEL=-3.1
+    12)
+        LEVEL=-3.1
         ;;
-    13) LEVEL=-3.2
+    13)
+        LEVEL=-3.2
         ;;
-    *) LEVEL=-$LEVEL
+    *)
+        LEVEL=-$LEVEL
+        ;;
 esac
 
 if [[ ! -f "$DEST_FOLDER/$REPXML" ]]; then
@@ -78,25 +92,35 @@ if [[ ! -f $FILE ]]; then
     fi
 fi
 
-if [[ "$1" -le 13 ]]; then
-    FOLDER=${FILE%.zip}
-else
-    case $1 in
-        14)
-            VERSION=4.0.2;;
-        15)
-            VERSION=4.0.4;;
-        16)
-            VERSION=4.1.2;;
-        17)
-            VERSION=4.2.2;;
-        18)
-            VERSION=4.3;;
-        19)
-            VERSION=4.4;;
-    esac
-    FOLDER=android-$VERSION
-fi
+case $1 in
+    2)
+        FOLDER=android-1.1
+        ;;
+    5)
+        FOLDER=android-$VERSION
+        ;;
+    14)
+        FOLDER=android-4.0.2
+        ;;
+    15)
+        FOLDER=android-4.0.4
+        ;;
+    16)
+        FOLDER=android-4.1.2
+        ;;
+    17)
+        FOLDER=android-4.2.2
+        ;;
+    18)
+        FOLDER=android-4.3
+        ;;
+    19)
+        FOLDER=android-4.4
+        ;;
+    *)
+        FOLDER=${FILE%.zip}
+        ;;
+esac
 
 if [[ ! -d $DEST_FOLDER/$FOLDER ]]; then
     echo "unzipping the file"
