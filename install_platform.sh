@@ -125,11 +125,11 @@ else
 fi
 
 
-# Edit ~/.android/ddms.cfg
-if [[ -d ~/.android && -f ~/.android/ddms.cfg ]]; then
+# Edit $HOME/.android/ddms.cfg
+if [[ -d $HOME/.android && -f $HOME/.android/ddms.cfg ]]; then
     sed -e "s:.*lastSdkPath.*:lastSdkPath=$MY_SDK_DIR:" \
-        < ~/.android/ddms.cfg > ~/.android/ddms.cfg.2
-    mv -f ~/.android/ddms.cfg.2 ~/.android/ddms.cfg
+        < $HOME/.android/ddms.cfg > $HOME/.android/ddms.cfg.2
+    mv -f $HOME/.android/ddms.cfg.2 $HOME/.android/ddms.cfg
 else
     echo "Your Android configuration directory can not be found."
     echo "When you start Eclipse, please edit the location of the sdk to:"
