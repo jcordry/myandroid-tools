@@ -124,7 +124,6 @@ else
     echo Eclipse configuration files not found.
 fi
 
-
 # Edit $HOME/.android/ddms.cfg
 if [[ -d $HOME/.android && -f $HOME/.android/ddms.cfg ]]; then
     sed -e "s:.*lastSdkPath.*:lastSdkPath=$MY_SDK_DIR:" \
