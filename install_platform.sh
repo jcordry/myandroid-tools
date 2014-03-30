@@ -115,11 +115,13 @@ mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
 # Edit the eclipse config files
 $ECLIPSE_SDK_CONF_FILE=$ECLIPSE_WORKSPACE/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.android.ide.eclipse.adt.prefs
-if [[ -f $ECLIPSE_SDK_CONF_FILE ]]; then
+if [[ -d $ECLIPSE_WORKSPACE && -f $ECLIPSE_SDK_CONF_FILE ]]; then
     sed -e\
     "s/com.android.ide.eclipse.adt.sdk=.*/com.android.ide.eclipse.adt.sdk=$MY_SDK_DIR"\
     < $ECLIPSE_SDK_CONF_FILE > $ECLIPSE_SDK_CONF_FILE.2
     mv -f $ECLIPSE_SDK_CONF_FILE.2 $ECLIPSE_SDK_CONF_FILE
+else
+    echo Eclipse configuration files not found.
 fi
 
 
