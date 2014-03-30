@@ -122,6 +122,8 @@ if [[ -d $ECLIPSE_WORKSPACE && -f $ECLIPSE_SDK_CONF_FILE ]]; then
     mv -f $ECLIPSE_SDK_CONF_FILE.2 $ECLIPSE_SDK_CONF_FILE
 else
     echo Eclipse configuration files not found.
+    echo "When you start Eclipse, please edit the location of the sdk to:"
+    echo "$MY_SDK_DIR."
 fi
 
 # Edit $HOME/.android/ddms.cfg
@@ -131,6 +133,4 @@ if [[ -d $HOME/.android && -f $HOME/.android/ddms.cfg ]]; then
     mv -f $HOME/.android/ddms.cfg.2 $HOME/.android/ddms.cfg
 else
     echo "Your Android configuration directory can not be found."
-    echo "When you start Eclipse, please edit the location of the sdk to:"
-    echo "$MY_SDK_DIR."
 fi
