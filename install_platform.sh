@@ -117,7 +117,7 @@ ECLIPSE_WORKSPACE=`grep -r -I -e RECENT_WORKSPACES=/ .eclipse/ |\
 
 # Edit the eclipse config files
 $ECLIPSE_SDK_CONF_FILE=$ECLIPSE_WORKSPACE/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.android.ide.eclipse.adt.prefs
-if [[ -d $ECLIPSE_WORKSPACE && -f $ECLIPSE_SDK_CONF_FILE ]]; then
+if [[ -d `dirname $ECLIPSE_SDK_CONF_FILE` && -f $ECLIPSE_SDK_CONF_FILE ]]; then
     sed -e\
         "s/com.android.ide.eclipse.adt.sdk=.*/com.android.ide.eclipse.adt.sdk=$MY_SDK_DIR/g"\
         < $ECLIPSE_SDK_CONF_FILE > $ECLIPSE_SDK_CONF_FILE.2
