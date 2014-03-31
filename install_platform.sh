@@ -111,7 +111,7 @@ done
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
 ECLIPSE_WORKSPACE=`grep -r -I -e RECENT_WORKSPACES=/ .eclipse/ |\
-    sed -e "s/.*://g"`
+    cut -d '=' -f 2`
 
 # Edit the eclipse config files
 $ECLIPSE_SDK_CONF_FILE=$ECLIPSE_WORKSPACE/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.android.ide.eclipse.adt.prefs
