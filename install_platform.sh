@@ -85,12 +85,9 @@ mklink() {
     fi
 }
 
-if [[ ! -d "$MY_API_DIR" ]]; then
-    DIRNAME=`dirname $MY_API_DIR`
-    mymkdir $DIRNAME
-    ./getplatform.sh $API_LEVEL $DIRNAME
-fi
-
+DIRNAME=`dirname $MY_API_DIR`
+mymkdir $DIRNAME
+./getplatform.sh $API_LEVEL $DIRNAME
 mymkdir "$MY_SDK_DIR"
 
 # Link everything but platforms from the SDK installation directory.
