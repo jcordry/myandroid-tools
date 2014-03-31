@@ -26,8 +26,6 @@ AND_SDK_DIR=/usr/local/android-sdks
 # Where our copy of the SDK is going to sit
 MY_SDK_DIR=/tmp/android-sdks
 
-# Eclipse workspace
-ECLIPSE_WORKSPACE=$HOME/workspace/
 # The user should not have anything to edit beyond this line
 
 # API level. The default level is 8.
@@ -112,6 +110,10 @@ done
 
 echo mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
+
+
+ECLIPSE_WORKSPACE=`grep -r -I -e RECENT_WORKSPACES=/ .eclipse/ |\
+    sed -e "s/.*://g"`
 
 # Edit the eclipse config files
 $ECLIPSE_SDK_CONF_FILE=$ECLIPSE_WORKSPACE/.metadata/.plugins/org.eclipse.core.runtime/.settings/com.android.ide.eclipse.adt.prefs
