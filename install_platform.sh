@@ -108,9 +108,7 @@ for file in "$AND_SDK_DIR"/platforms/*; do
     mklink "$file" "$MY_SDK_DIR/platforms"
 done
 
-echo mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
-
 
 ECLIPSE_WORKSPACE=`grep -r -I -e RECENT_WORKSPACES=/ .eclipse/ |\
     sed -e "s/.*://g"`
