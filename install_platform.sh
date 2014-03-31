@@ -107,7 +107,7 @@ done
 
 mklink "$MY_API_DIR" "$MY_SDK_DIR/platforms"
 
-ECLIPSE_WORKSPACE=`grep -r -I -e RECENT_WORKSPACES=/ .eclipse/ |\
+ECLIPSE_WORKSPACE=`grep -r -I -e RECENT_WORKSPACES=/ $HOME/.eclipse/ |\
     cut -d '=' -f 2`
 
 # Edit the eclipse config files
